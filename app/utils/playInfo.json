@@ -1,0 +1,1526 @@
+{
+    "e": [
+        {
+            "name": "勇者",
+            "score": 1.003256,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "アイドル",
+            "score": 0.9859610000000001,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "唱",
+            "score": 1.006824,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "愛包ダンスホール",
+            "score": 1.00339,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "マツケンサンバⅡ",
+            "score": 0.998388,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "メイトなやつら（FEAT. 天開司, 佐藤ホームズ, あっくん大魔王 &amp; 歌衣メイカ）",
+            "score": 1.004307,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "INTERNET YAMERO",
+            "score": 1.001054,
+            "displayLevel": 10.5,
+            "isDx": true
+        },
+        {
+            "name": "青春コンプレックス",
+            "score": 0.9988389999999999,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "おとせサンダー",
+            "score": 1.007728,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "YONA YONA DANCE",
+            "score": 1.006688,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "偉大なる悪魔は実は大天使パトラちゃん様なのだ！",
+            "score": 0.999405,
+            "displayLevel": 10.5,
+            "isDx": true
+        },
+        {
+            "name": "シュガーホリック",
+            "score": 1.00705,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "バラバラ〜仮初レインボーローズ〜",
+            "score": 0.994863,
+            "displayLevel": 10.5,
+            "isDx": true,
+            "count": 3
+        },
+        {
+            "name": "さくゆいたいそう",
+            "score": 1.00204,
+            "displayLevel": 9.5,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "Baddest",
+            "score": 0.969944,
+            "displayLevel": 10.5,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "オントロジー",
+            "score": 1.002017,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "Virtual to LIVE",
+            "score": 1.0074670000000001,
+            "displayLevel": 8.5,
+            "isDx": true,
+            "count": 11
+        },
+        {
+            "name": "ヒトガタ",
+            "score": 1.000835,
+            "displayLevel": 10.5,
+            "isDx": true
+        },
+        {
+            "name": "うまぴょい伝説",
+            "score": 0.991511,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "お願いマッスル",
+            "score": 0.9883660000000001,
+            "displayLevel": 8.5,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "アノーイング！さんさんウィーク！",
+            "score": 1.004823,
+            "displayLevel": 8,
+            "isDx": true
+        },
+        {
+            "name": "愛のシュプリーム！",
+            "score": 1.005634,
+            "displayLevel": 8,
+            "isDx": true
+        },
+        {
+            "name": "ようこそジャパリパークへ",
+            "score": 1.005396,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "回レ！雪月花",
+            "score": 1.005266,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "ギリギリ最強あいまいみー！",
+            "score": 0.999483,
+            "displayLevel": 10.5,
+            "isDx": false
+        },
+        {
+            "name": "true my heart -Lovable mix-",
+            "score": 0.9753060000000001,
+            "displayLevel": 10,
+            "isDx": false
+        },
+        {
+            "name": "デビルじゃないもん",
+            "score": 1.00811,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "リアライズ",
+            "score": 1.0054319999999999,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "イガク",
+            "score": 1.000997,
+            "displayLevel": 11,
+            "isDx": true,
+            "count": 3
+        },
+        {
+            "name": "病み垢ステロイド",
+            "score": 1.006106,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "ダーリンダンス",
+            "score": 1.0036180000000001,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "ずんだパーリナイ",
+            "score": 1.007646,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "トンデモワンダーズ",
+            "score": 1.0034180000000001,
+            "displayLevel": 10,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "バグ",
+            "score": 1.000688,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "群青讃歌",
+            "score": 1.002607,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "アイドル新鋭隊",
+            "score": 1.00216,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "にっこり^^調査隊のテーマ",
+            "score": 1.009447,
+            "displayLevel": 10,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "フォニイ",
+            "score": 1.003552,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "グッバイ宣言",
+            "score": 1.006183,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "星界ちゃんと可不ちゃんのおつかい合騒曲",
+            "score": 1.00455,
+            "displayLevel": 11.5,
+            "isDx": true,
+            "count": 6
+        },
+        {
+            "name": "きゅうくらりん",
+            "score": 1.006234,
+            "displayLevel": 11.5,
+            "isDx": true,
+            "count": 6
+        },
+        {
+            "name": "ベノム",
+            "score": 1.001919,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "酔いどれ知らず",
+            "score": 1.005375,
+            "displayLevel": 8,
+            "isDx": true
+        },
+        {
+            "name": "QUEEN",
+            "score": 0.997188,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "KING",
+            "score": 1.003727,
+            "displayLevel": 9.5,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "ノンブレス・オブリージュ",
+            "score": 0.999636,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "神っぽいな",
+            "score": 0.986549,
+            "displayLevel": 8.5,
+            "isDx": true
+        },
+        {
+            "name": "魔法少女とチョコレゐト",
+            "score": 0.996644,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "強風オールバック",
+            "score": 1.0035290000000001,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "ラヴィ",
+            "score": 0.9993000000000001,
+            "displayLevel": 10.5,
+            "isDx": true,
+            "count": 3
+        },
+        {
+            "name": "エゴロック",
+            "score": 1.0002389999999999,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "テレキャスタービーボーイ",
+            "score": 0.9963609999999999,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "ラビットホール",
+            "score": 1.000724,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "アニマル",
+            "score": 1.002472,
+            "displayLevel": 10.5,
+            "isDx": true
+        },
+        {
+            "name": "ヴァンパイア",
+            "score": 0.9956140000000001,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "乙女解剖",
+            "score": 1.0076260000000001,
+            "displayLevel": 8.5,
+            "isDx": true
+        },
+        {
+            "name": "ヒバナ",
+            "score": 1.0059,
+            "displayLevel": 11,
+            "isDx": false
+        },
+        {
+            "name": "ゴーストルール",
+            "score": 0.984417,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "39",
+            "score": 0.981347,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "テオ",
+            "score": 0.999126,
+            "displayLevel": 10.5,
+            "isDx": true
+        },
+        {
+            "name": "アスノヨゾラ哨戒班",
+            "score": 0.999415,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "初音天地開闢神話",
+            "score": 0.986278,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "初音ミクの激唱",
+            "score": 0.985791,
+            "displayLevel": 12,
+            "isDx": false,
+            "count": 2
+        },
+        {
+            "name": "初音ミクの消失",
+            "score": 1.006228,
+            "displayLevel": 12,
+            "isDx": true,
+            "count": 4
+        },
+        {
+            "name": "初音ミクの消失",
+            "score": 0.994581,
+            "displayLevel": 11.5,
+            "isDx": false,
+            "count": 3
+        },
+        {
+            "name": "命に嫌われている",
+            "score": 1.005766,
+            "displayLevel": 10,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "独りんぼエンヴィー",
+            "score": 0.999962,
+            "displayLevel": 8,
+            "isDx": true
+        },
+        {
+            "name": "ロキ",
+            "score": 0.98566,
+            "displayLevel": 10.5,
+            "isDx": false
+        },
+        {
+            "name": "いーあるふぁんくらぶ",
+            "score": 1.006642,
+            "displayLevel": 8,
+            "isDx": true
+        },
+        {
+            "name": "明星ギャラクティカ",
+            "score": 0.977928,
+            "displayLevel": 8.5,
+            "isDx": true
+        },
+        {
+            "name": "太陽系デスコ",
+            "score": 1.004588,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "ダンスロボットダンス",
+            "score": 1.00157,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "ダンスロボットダンス",
+            "score": 1.003153,
+            "displayLevel": 11,
+            "isDx": false,
+            "count": 2
+        },
+        {
+            "name": "エイリアンエイリアン",
+            "score": 0.992758,
+            "displayLevel": 10,
+            "isDx": false,
+            "count": 2
+        },
+        {
+            "name": "オシオキGIMMICK!!",
+            "score": 1.008453,
+            "displayLevel": 10.5,
+            "isDx": true
+        },
+        {
+            "name": "メランコリック",
+            "score": 0.87268,
+            "displayLevel": 9,
+            "isDx": false
+        },
+        {
+            "name": "ハッピーシンセサイザ",
+            "score": 0.997561,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "千本桜",
+            "score": 1.000907,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "シャルル",
+            "score": 1.001131,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "脳漿炸裂ガール",
+            "score": 0.990482,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "裏表ラバーズ",
+            "score": 0.988273,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "デリヘル呼んだら君が来た",
+            "score": 0.9959650000000001,
+            "displayLevel": 10,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "深海シティアンダーグラウンド",
+            "score": 1.004551,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "メルト",
+            "score": 0.9803419999999999,
+            "displayLevel": 8.5,
+            "isDx": true
+        },
+        {
+            "name": "星屑ユートピア",
+            "score": 0.9987520000000001,
+            "displayLevel": 10.5,
+            "isDx": true
+        },
+        {
+            "name": "チュルリラ・チュルリラ・ダッダッダ！",
+            "score": 0.989388,
+            "displayLevel": 11,
+            "isDx": false
+        },
+        {
+            "name": "深海少女",
+            "score": 1.005372,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "片想いサンバ",
+            "score": 1.004618,
+            "displayLevel": 11.5,
+            "isDx": false
+        },
+        {
+            "name": "天ノ弱",
+            "score": 0.9854999999999999,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "右肩の蝶",
+            "score": 1.001591,
+            "displayLevel": 11,
+            "isDx": false
+        },
+        {
+            "name": "金の聖夜霜雪に朽ちて",
+            "score": 1.00213,
+            "displayLevel": 11.5,
+            "isDx": false
+        },
+        {
+            "name": "ブリキノダンス",
+            "score": 0.998067,
+            "displayLevel": 10.5,
+            "isDx": false
+        },
+        {
+            "name": "おねがいダーリン",
+            "score": 0.996841,
+            "displayLevel": 11,
+            "isDx": false
+        },
+        {
+            "name": "ロミオとシンデレラ",
+            "score": 0.980824,
+            "displayLevel": 11,
+            "isDx": false
+        },
+        {
+            "name": "Ultimate taste",
+            "score": 1.005253,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "Bad Apple!! feat.nomico (Tetsuya Komuro Remix)",
+            "score": 0.9958839999999999,
+            "displayLevel": 9.5,
+            "isDx": true
+        },
+        {
+            "name": "最終鬼畜妹フランドール・S",
+            "score": 1.000688,
+            "displayLevel": 11,
+            "isDx": false
+        },
+        {
+            "name": "チルノのパーフェクトさんすう教室　⑨周年バージョン",
+            "score": 1.007113,
+            "displayLevel": 9,
+            "isDx": true
+        },
+        {
+            "name": "つるぺったん",
+            "score": 1.0060120000000001,
+            "displayLevel": 10,
+            "isDx": true
+        },
+        {
+            "name": "Chronomia",
+            "score": 0.9747450000000001,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "パラドクスイヴ",
+            "score": 1.006426,
+            "displayLevel": 11,
+            "isDx": true,
+            "count": 4
+        },
+        {
+            "name": "YKWTD",
+            "score": 1.0060200000000001,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "Ourania",
+            "score": 1.005874,
+            "displayLevel": 10.5,
+            "isDx": true
+        },
+        {
+            "name": "プリズム△▽リズム",
+            "score": 1.005262,
+            "displayLevel": 10,
+            "isDx": true
+        }
+    ],
+    "m": [
+        {
+            "name": "勇者",
+            "score": 1.005985,
+            "displayLevel": 11.5,
+            "isDx": true,
+            "count": 11
+        },
+        {
+            "name": "アイドル",
+            "score": 1.001029,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "唱",
+            "score": 1.005389,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "愛包ダンスホール",
+            "score": 0.9910859999999999,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 14
+        },
+        {
+            "name": "マツケンサンバⅡ",
+            "score": 0.984224,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "メイトなやつら（FEAT. 天開司, 佐藤ホームズ, あっくん大魔王 &amp; 歌衣メイカ）",
+            "score": 0.9825400000000001,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "シリウスの輝きのように",
+            "score": 1.000873,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "プラネタリウム・レヴュー",
+            "score": 1.002368,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "INTERNET YAMERO",
+            "score": 1.005015,
+            "displayLevel": 11.5,
+            "isDx": true,
+            "count": 10
+        },
+        {
+            "name": "踊",
+            "score": 0.9979009999999999,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "前前前世",
+            "score": 0.9557769999999999,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "青春コンプレックス",
+            "score": 1.005322,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "おとせサンダー",
+            "score": 0.9883419999999999,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "YONA YONA DANCE",
+            "score": 0.9952209999999999,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "バラバラ〜仮初レインボーローズ〜",
+            "score": 0.999181,
+            "displayLevel": 12.5,
+            "isDx": true,
+            "count": 23
+        },
+        {
+            "name": "さくゆいたいそう",
+            "score": 0.9996980000000001,
+            "displayLevel": 12.5,
+            "isDx": true,
+            "count": 34
+        },
+        {
+            "name": "オントロジー",
+            "score": 1.002147,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "Virtual to LIVE",
+            "score": 1.005205,
+            "displayLevel": 12,
+            "isDx": true,
+            "count": 56
+        },
+        {
+            "name": "ヒトガタ",
+            "score": 0.986626,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "うまぴょい伝説",
+            "score": 0.988071,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "お願いマッスル",
+            "score": 0.989449,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "アノーイング！さんさんウィーク！",
+            "score": 0.9997969999999999,
+            "displayLevel": 12.5,
+            "isDx": true,
+            "count": 10
+        },
+        {
+            "name": "愛のシュプリーム！",
+            "score": 0.9911190000000001,
+            "displayLevel": 12.5,
+            "isDx": true,
+            "count": 12
+        },
+        {
+            "name": "ようこそジャパリパークへ",
+            "score": 1.004649,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "ようこそジャパリパークへ",
+            "score": 0.999058,
+            "displayLevel": 12,
+            "isDx": false,
+            "count": 10
+        },
+        {
+            "name": "回レ！雪月花",
+            "score": 0.961695,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "fantastic dreamer",
+            "score": 0.9952930000000001,
+            "displayLevel": 12,
+            "isDx": false,
+            "count": 14
+        },
+        {
+            "name": "デビルじゃないもん",
+            "score": 0.990757,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "ダーリンダンス",
+            "score": 1.005733,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "バグ",
+            "score": 1.0059879999999999,
+            "displayLevel": 11.5,
+            "isDx": true,
+            "count": 13
+        },
+        {
+            "name": "群青讃歌",
+            "score": 1.002809,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "アイドル新鋭隊",
+            "score": 1.002969,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "にっこり^^調査隊のテーマ",
+            "score": 1.003206,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "フォニイ",
+            "score": 0.995935,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "グッバイ宣言",
+            "score": 0.977101,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "ベノム",
+            "score": 0.992633,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "酔いどれ知らず",
+            "score": 0.995547,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "QUEEN",
+            "score": 0.984979,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "KING",
+            "score": 0.9871479999999999,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "ノンブレス・オブリージュ",
+            "score": 0.916515,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "神っぽいな",
+            "score": 0.9938089999999999,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "魔法少女とチョコレゐト",
+            "score": 0.9843510000000001,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "強風オールバック",
+            "score": 1.003036,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "ラヴィ",
+            "score": 0.9740850000000001,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 9
+        },
+        {
+            "name": "テレキャスタービーボーイ",
+            "score": 1.00229,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "ラビットホール",
+            "score": 1.00793,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "アニマル",
+            "score": 0.983801,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "ヴァンパイア",
+            "score": 1.003873,
+            "displayLevel": 11.5,
+            "isDx": true,
+            "count": 12
+        },
+        {
+            "name": "乙女解剖",
+            "score": 0.9925809999999999,
+            "displayLevel": 12,
+            "isDx": true,
+            "count": 13
+        },
+        {
+            "name": "ヒバナ",
+            "score": 1.005214,
+            "displayLevel": 12,
+            "isDx": false,
+            "count": 11
+        },
+        {
+            "name": "ゴーストルール",
+            "score": 0.9748439999999999,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "ゴーストルール",
+            "score": 0.9808880000000001,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "テオ",
+            "score": 0.983522,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "アスノヨゾラ哨戒班",
+            "score": 0.949979,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "キミノヨゾラ哨戒班",
+            "score": 0.912458,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "命に嫌われている",
+            "score": 0.985291,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "独りんぼエンヴィー",
+            "score": 0.973512,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "ロキ",
+            "score": 0.98693,
+            "displayLevel": 11.5,
+            "isDx": false
+        },
+        {
+            "name": "いーあるふぁんくらぶ",
+            "score": 0.9991070000000001,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "いーあるふぁんくらぶ",
+            "score": 1.005662,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "明星ギャラクティカ",
+            "score": 0.987342,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "太陽系デスコ",
+            "score": 1.004572,
+            "displayLevel": 12,
+            "isDx": true,
+            "count": 30
+        },
+        {
+            "name": "彗星ハネムーン",
+            "score": 0.983824,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "ダンスロボットダンス",
+            "score": 0.964512,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "ダンスロボットダンス",
+            "score": 0.976155,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "エイリアンエイリアン",
+            "score": 0.9924299999999999,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "メランコリック",
+            "score": 0.9898399999999999,
+            "displayLevel": 11.5,
+            "isDx": false
+        },
+        {
+            "name": "スイートマジック",
+            "score": 1.001463,
+            "displayLevel": 12,
+            "isDx": false,
+            "count": 11
+        },
+        {
+            "name": "ハッピーシンセサイザ",
+            "score": 0.978236,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "結ンデ開イテ羅刹ト骸",
+            "score": 1.005933,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "パンダヒーロー",
+            "score": 1.002371,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "マトリョシカ",
+            "score": 0.983267,
+            "displayLevel": 11.5,
+            "isDx": false
+        },
+        {
+            "name": "千本桜",
+            "score": 1.001717,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "千本桜",
+            "score": 0.972979,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "シャルル",
+            "score": 0.9910559999999999,
+            "displayLevel": 11,
+            "isDx": true
+        },
+        {
+            "name": "シャルル",
+            "score": 0.916882,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "脳漿炸裂ガール",
+            "score": 0.937613,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "ウミユリ海底譚",
+            "score": 0.935048,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "だんだん早くなる",
+            "score": 1.004313,
+            "displayLevel": 12,
+            "isDx": false,
+            "count": 11
+        },
+        {
+            "name": "ワールズエンド・ダンスホール",
+            "score": 0.9807009999999999,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "しんでしまうとはなさけない！",
+            "score": 0.920974,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "フキゲンワルツ",
+            "score": 0.984829,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "ミラクルペイント",
+            "score": 0.9930910000000001,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "カラフル×メロディ",
+            "score": 0.999122,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "デリヘル呼んだら君が来た",
+            "score": 0.962566,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "深海シティアンダーグラウンド",
+            "score": 0.981729,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "炉心融解",
+            "score": 0.9446800000000001,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "メルト",
+            "score": 0.99187,
+            "displayLevel": 11.5,
+            "isDx": true
+        },
+        {
+            "name": "星屑ユートピア",
+            "score": 0.978042,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "Hand in Hand",
+            "score": 0.984216,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "Tell Your World",
+            "score": 1.003079,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "チュルリラ・チュルリラ・ダッダッダ！",
+            "score": 0.980831,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "好き！雪！本気マジック",
+            "score": 0.996194,
+            "displayLevel": 12,
+            "isDx": false,
+            "count": 14
+        },
+        {
+            "name": "アゲアゲアゲイン",
+            "score": 1.001063,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "深海少女",
+            "score": 0.940532,
+            "displayLevel": 13,
+            "isDx": true
+        },
+        {
+            "name": "片想いサンバ",
+            "score": 0.992365,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "Just Be Friends",
+            "score": 0.941235,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "天ノ弱",
+            "score": 0.9633280000000001,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "右肩の蝶",
+            "score": 0.981043,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "サウンド",
+            "score": 1.000227,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "金の聖夜霜雪に朽ちて",
+            "score": 0.965871,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "えれくとりっく・えんじぇぅ",
+            "score": 0.9916459999999999,
+            "displayLevel": 11.5,
+            "isDx": false
+        },
+        {
+            "name": "ブリキノダンス",
+            "score": 1.000523,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "おねがいダーリン",
+            "score": 0.918267,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "白い雪のプリンセスは",
+            "score": 0.9912829999999999,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "ココロ",
+            "score": 1.002566,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "踊れオーケストラ",
+            "score": 1.005985,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "StargazeR",
+            "score": 0.992207,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "みくみくにしてあげる♪【してやんよ】",
+            "score": 1.006758,
+            "displayLevel": 11.5,
+            "isDx": false
+        },
+        {
+            "name": "SPiCa",
+            "score": 0.981542,
+            "displayLevel": 12.5,
+            "isDx": false,
+            "count": 9
+        },
+        {
+            "name": "ぽっぴっぽー",
+            "score": 0.960875,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "ダブルラリアット",
+            "score": 0.937239,
+            "displayLevel": 13,
+            "isDx": false
+        },
+        {
+            "name": "ロミオとシンデレラ",
+            "score": 0.9672839999999999,
+            "displayLevel": 12.5,
+            "isDx": false
+        },
+        {
+            "name": "Link",
+            "score": 0.9942650000000001,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "最終鬼畜妹フランドール・S",
+            "score": 0.9969790000000001,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "Help me, ERINNNNNN!!",
+            "score": 1.00568,
+            "displayLevel": 12,
+            "isDx": false
+        },
+        {
+            "name": "つるぺったん",
+            "score": 0.997433,
+            "displayLevel": 12,
+            "isDx": true
+        },
+        {
+            "name": "Bad Apple!! feat nomico",
+            "score": 0.9864879999999999,
+            "displayLevel": 12,
+            "isDx": false
+        }
+    ],
+    "r": [
+        {
+            "name": "勇者",
+            "score": 0.9691540000000001,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 3
+        },
+        {
+            "name": "アイドル",
+            "score": 0.97961,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 6
+        },
+        {
+            "name": "唱",
+            "score": 0.9315789999999999,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 1
+        },
+        {
+            "name": "INTERNET YAMERO",
+            "score": 0.911485,
+            "displayLevel": 13.5,
+            "isDx": true,
+            "count": 4
+        },
+        {
+            "name": "青春コンプレックス",
+            "score": 0.956839,
+            "displayLevel": 13.5,
+            "isDx": true,
+            "count": 1
+        },
+        {
+            "name": "Virtual to LIVE",
+            "score": 0.993816,
+            "displayLevel": 12.5,
+            "isDx": true,
+            "count": 47
+        },
+        {
+            "name": "うまぴょい伝説",
+            "score": 0.8760380000000001,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 2
+        },
+        {
+            "name": "ようこそジャパリパークへ",
+            "score": 0.942296,
+            "displayLevel": 12.5,
+            "isDx": false,
+            "count": 2
+        },
+        {
+            "name": "ダーリンダンス",
+            "score": 0.966716,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 6
+        },
+        {
+            "name": "バグ",
+            "score": 0.913697,
+            "displayLevel": 13.5,
+            "isDx": true,
+            "count": 1
+        },
+        {
+            "name": "フォニイ",
+            "score": 0.9897440000000001,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 9
+        },
+        {
+            "name": "酔いどれ知らず",
+            "score": 0.947893,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 1
+        },
+        {
+            "name": "神っぽいな",
+            "score": 0.9434699999999999,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 4
+        },
+        {
+            "name": "テレキャスタービーボーイ",
+            "score": 0.979149,
+            "displayLevel": 12.5,
+            "isDx": true
+        },
+        {
+            "name": "ラビットホール",
+            "score": 0.9705710000000001,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 3
+        },
+        {
+            "name": "ヴァンパイア",
+            "score": 0.981974,
+            "displayLevel": 13,
+            "isDx": true,
+            "count": 8
+        },
+        {
+            "name": "ヒバナ",
+            "score": 0.9853879999999999,
+            "displayLevel": 13,
+            "isDx": false,
+            "count": 1
+        },
+        {
+            "name": "だんだん早くなる",
+            "score": 0.9412940000000001,
+            "displayLevel": 12.5,
+            "isDx": false,
+            "count": 1
+        },
+        {
+            "name": "からくりピエロ",
+            "score": 0.9637300000000001,
+            "displayLevel": 12.5,
+            "isDx": false,
+            "count": 1
+        },
+        {
+            "name": "ナイトメア☆パーティーナイト",
+            "score": 0.967561,
+            "displayLevel": 12.5,
+            "isDx": false,
+            "count": 1
+        },
+        {
+            "name": "ロミオとシンデレラ",
+            "score": 0.95753,
+            "displayLevel": 13,
+            "isDx": false,
+            "count": 1
+        }
+    ]
+}
