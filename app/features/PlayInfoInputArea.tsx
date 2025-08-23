@@ -38,8 +38,8 @@ const PlayInfoInputArea = ({ children }: { children: React.ReactNode }) => {
         className="space-y-4"
         action={async (formData: FormData) => {
           try {
-            const path = await updatePlayInfo(formData);
-            toast({ description: "登録に成功しました" + path });
+            await updatePlayInfo(formData);
+            toast({ description: "登録に成功しました" });
           } catch (e) {
             const message = e instanceof Error ? e.message : "";
             toast({
