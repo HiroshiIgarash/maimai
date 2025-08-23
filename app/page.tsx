@@ -5,6 +5,7 @@ import { fetchMusicData } from "./utils/functions";
 import { join } from "path";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import RevalidateButton from "./components/RevalidateButton";
 
 export default async function Home() {
   const musicData = await fetchMusicData();
@@ -16,18 +17,25 @@ export default async function Home() {
   return (
     <>
       <div className="container mx-auto px-4 space-y-4 py-16">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-          maimaiスコア計測
-        </h1>
-        譜面定数の参考ページは
-        <Button asChild variant={"link"}>
-          <Link
-            href="https://sgimera.github.io/mai_RatingAnalyzer/maidx_inner_level_24_prismplus.html"
-            target="_blank"
-          >
-            こちら
-          </Link>
-        </Button>
+        <div className="flex justify-between items-start">
+          <div>
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+              maimaiスコア計測
+            </h1>
+            <div className="mt-2">
+              譜面定数の参考ページは
+              <Button asChild variant={"link"}>
+                <Link
+                  href="https://sgimera.github.io/mai_RatingAnalyzer/maidx_inner_level_24_prismplus.html"
+                  target="_blank"
+                >
+                  こちら
+                </Link>
+              </Button>
+            </div>
+          </div>
+          <RevalidateButton />
+        </div>
         <div>
           <PlayInfoInputArea>{scriptString}</PlayInfoInputArea>
         </div>

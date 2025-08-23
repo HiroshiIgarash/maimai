@@ -1,5 +1,6 @@
 import { MusicDifficulty, MusicRatingInfo, PlayInfo } from "./types/type";
 import { calculateSingleRating } from "./functions_browser";
+import { unstable_cache, revalidateTag } from "next/cache";
 
 const titleMap: { [key: string]: string } = {
   "バラバラ〜仮初レインボーローズ〜": "バラバラ",
@@ -119,16 +120,21 @@ export const parseMusicItem = (item: string): { title: string; difficulty: strin
   }
 };
 
-/**
- * JSファイルから楽曲データを文字列処理で取得してパースする
- * @returns
- */
-export const fetchMusicData = async (): Promise<{
+// キャッシュをクリアする関数
+export const revalidateMusicDataCache = async (): Promise<void> => {
+  revalidateTag('music-data');
+};
+
+// 内部の楽曲データ取得関数（キャッシュなし）
+const fetchMusicDataInternal = async (): Promise<{
   r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
   m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
   e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
 }> => {
-  const response = await fetch('https://sgimera.github.io/mai_RatingAnalyzer/scripts_maimai/maidx_in_lv_data_prismplus.js');
+  console.log('Fetching fresh music data from external source');
+  const response = await fetch('https://sgimera.github.io/mai_RatingAnalyzer/scripts_maimai/maidx_in_lv_data_prismplus.js', {
+    next: { revalidate: false } // APIからの取得時はキャッシュしない
+  });
   const scriptText = await response.text();
   
   const result: { 
@@ -186,6 +192,19 @@ export const fetchMusicData = async (): Promise<{
 
   return result;
 };
+
+/**
+ * JSファイルから楽曲データを文字列処理で取得してパースする（キャッシュ付き）
+ * @returns
+ */
+export const fetchMusicData = unstable_cache(
+  fetchMusicDataInternal,
+  ['music-data'],
+  {
+    tags: ['music-data'],
+    revalidate: false, // 手動でrevalidateするまでキャッシュを保持
+  }
+);
 
 /**
  * 新しい楽曲データから譜面定数および旧曲・新曲を検索する
