@@ -28,6 +28,18 @@ const titleMap: { [key: string]: string } = {
   "キャプテン・ムラサのケツアンカー": "ケツアンカー",
   "Bad Apple!! feat.nomico ～五十嵐 撫子 Ver.～": "Bad Apple(撫子)",
   "Help me, ERINNNNNN!!": "Help me, ERIN!!(new)",
+  "ウッーウッーウマウマ(ﾟ∀ﾟ)": "ウマウマ",
+  "Bad Apple!! feat.nomico (Tetsuya Komuro Remix)": "Bad Apple!! (TK)",
+  "Help me, ERINNNNNN!!（Band ver.）": "Help me, ERIN!!（Band）",
+  "スカーレット警察のゲットーパトロール24時": "スカーレット警察",
+  "チルノのパーフェクトさんすう教室　⑨周年バージョン": "チルノ9周年",
+  "Bad Apple!! feat.nomico": "Bad Apple!!",
+  "東方スイーツ！～鬼畜姉妹と受難メイド～": "東方スイーツ！",
+  "ピポピポ -People People- feat. ななひら": "ピポピポ",
+  "アトロポスと最果の探究者": "アトロポス",
+  "true my heart -Lovable mix-": "true my heart",
+  "Löschen": "Loshen",
+  "U&iVERSE -銀河鸞翔-": "UNiVERSE 銀河鸞翔",
 };
 
 
