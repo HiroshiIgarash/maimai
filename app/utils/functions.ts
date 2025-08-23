@@ -35,11 +35,11 @@ const titleMap: { [key: string]: string } = {
   スカーレット警察のゲットーパトロール24時: "スカーレット警察",
   "チルノのパーフェクトさんすう教室　⑨周年バージョン": "チルノ9周年",
   "Bad Apple!! feat.nomico": "Bad Apple!!",
-  "東方スイーツ！～鬼畜姉妹と受難メイド～": "東方スイーツ！",
+  "東方スイーツ！～鬼畜姉妹と受難メイド～": "東方スイーツ",
   "ピポピポ -People People- feat. ななひら": "ピポピポ",
   アトロポスと最果の探究者: "アトロポス",
   "true my heart -Lovable mix-": "true my heart",
-  Löschen: "Loshen",
+  Löschen: "Loschen",
   "U&iVERSE -銀河鸞翔-": "UNiVERSE 銀河鸞翔",
 };
 
