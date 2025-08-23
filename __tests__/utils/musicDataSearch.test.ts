@@ -1,6 +1,6 @@
-import { describe, it, expect } from '@jest/globals';
-import { generateMusicRatingInfoListFromMusicData } from '@/app/utils/functions';
-import { PlayInfo, MusicDifficulty } from '@/app/utils/types/type';
+import { describe, it, expect } from "@jest/globals";
+import { generateMusicRatingInfoListFromMusicData } from "@/app/utils/functions";
+import { PlayInfo, MusicDifficulty } from "@/app/utils/types/type";
 
 // テスト用の楽曲データ
 const mockMusicData = {
@@ -23,44 +23,44 @@ const mockMusicData = {
 const mockPlayInfo: PlayInfo[] = [
   {
     name: "PANDORA PARADOXXX",
-    score: 0.9950,
+    score: 0.995,
     displayLevel: 15.0,
     isDx: false,
   },
   {
     name: "系ぎて",
-    score: 0.9980,
+    score: 0.998,
     displayLevel: 15.0,
     isDx: true,
   },
   {
     name: "Unknown Song", // 楽曲データにない楽曲
-    score: 0.9900,
+    score: 0.99,
     displayLevel: 14.0,
     isDx: false,
   },
 ];
 
-describe('Music Data Search Functions', () => {
-  describe('generateMusicRatingInfoListFromMusicData', () => {
-    it('プレイ情報と楽曲データから正しくレーティング情報を生成する', () => {
+describe("Music Data Search Functions", () => {
+  describe("generateMusicRatingInfoListFromMusicData", () => {
+    it("プレイ情報と楽曲データから正しくレーティング情報を生成する", () => {
       const result = generateMusicRatingInfoListFromMusicData(
-        mockPlayInfo, 
-        mockMusicData, 
+        mockPlayInfo,
+        mockMusicData,
         "r" as MusicDifficulty
       );
 
       expect(result).toHaveLength(3);
 
       // PANDORA PARADOXXXのテスト
-      const pandora = result.find(item => item.name === "PANDORA PARADOXXX");
+      const pandora = result.find((item) => item.name === "PANDORA PARADOXXX");
       expect(pandora).toEqual(
         expect.objectContaining({
           name: "PANDORA PARADOXXX",
           difficulty: "r",
           isDx: false,
           isNew: false,
-          score: 0.9950,
+          score: 0.995,
           realLevel: 15.0,
           displayLevel: 15.0,
           levelUsingRatingCalculate: 15.0,
@@ -68,14 +68,14 @@ describe('Music Data Search Functions', () => {
       );
 
       // 系ぎてのテスト
-      const keikeite = result.find(item => item.name === "系ぎて");
+      const keikeite = result.find((item) => item.name === "系ぎて");
       expect(keikeite).toEqual(
         expect.objectContaining({
-          name: "系ぎて", 
+          name: "系ぎて",
           difficulty: "r",
           isDx: true,
           isNew: false,
-          score: 0.9980,
+          score: 0.998,
           realLevel: 15.0,
           displayLevel: 15.0,
           levelUsingRatingCalculate: 15.0,
@@ -83,14 +83,14 @@ describe('Music Data Search Functions', () => {
       );
 
       // 未知の楽曲のテスト（realLevel: undefined）
-      const unknown = result.find(item => item.name === "Unknown Song");
+      const unknown = result.find((item) => item.name === "Unknown Song");
       expect(unknown).toEqual(
         expect.objectContaining({
           name: "Unknown Song",
-          difficulty: "r", 
+          difficulty: "r",
           isDx: false,
           isNew: undefined,
-          score: 0.9900,
+          score: 0.99,
           realLevel: undefined,
           displayLevel: 14.0,
           levelUsingRatingCalculate: 14.0, // displayLevelを使用
@@ -98,17 +98,17 @@ describe('Music Data Search Functions', () => {
       );
     });
 
-    it('MASTER難易度の楽曲を正しく処理する', () => {
+    it("MASTER難易度の楽曲を正しく処理する", () => {
       const masterPlayInfo: PlayInfo[] = [
         {
           name: "World's end BLACKBOX",
-          score: 0.9960,
+          score: 0.996,
           displayLevel: 14.0,
           isDx: false,
         },
         {
           name: "宙天",
-          score: 0.9970,
+          score: 0.997,
           displayLevel: 14.0,
           isDx: true,
         },
@@ -122,19 +122,21 @@ describe('Music Data Search Functions', () => {
 
       expect(result).toHaveLength(2);
 
-      const blackbox = result.find(item => item.name === "World's end BLACKBOX");
+      const blackbox = result.find(
+        (item) => item.name === "World's end BLACKBOX"
+      );
       expect(blackbox?.isNew).toBe(false);
 
-      const chuten = result.find(item => item.name === "宙天");
+      const chuten = result.find((item) => item.name === "宙天");
       expect(chuten?.isNew).toBe(true);
       expect(chuten?.isDx).toBe(true);
     });
 
-    it('EXPERT難易度の楽曲を正しく処理する', () => {
+    it("EXPERT難易度の楽曲を正しく処理する", () => {
       const expertPlayInfo: PlayInfo[] = [
         {
-          name: "QZKago Requiem", 
-          score: 0.9940,
+          name: "QZKago Requiem",
+          score: 0.994,
           displayLevel: 13.0,
           isDx: false,
         },
@@ -142,7 +144,7 @@ describe('Music Data Search Functions', () => {
 
       const result = generateMusicRatingInfoListFromMusicData(
         expertPlayInfo,
-        mockMusicData, 
+        mockMusicData,
         "e" as MusicDifficulty
       );
 
@@ -151,9 +153,9 @@ describe('Music Data Search Functions', () => {
       expect(result[0].isNew).toBe(false);
     });
 
-    it('楽曲データが空の場合を適切に処理する', () => {
+    it("楽曲データが空の場合を適切に処理する", () => {
       const emptyMusicData = { r: [], m: [], e: [] };
-      
+
       const result = generateMusicRatingInfoListFromMusicData(
         mockPlayInfo,
         emptyMusicData,
@@ -161,16 +163,16 @@ describe('Music Data Search Functions', () => {
       );
 
       expect(result).toHaveLength(3);
-      
+
       // すべての楽曲でrealLevel: undefined, isNew: undefinedになるはず
-      result.forEach(item => {
+      result.forEach((item) => {
         expect(item.realLevel).toBeUndefined();
         expect(item.isNew).toBeUndefined();
         expect(item.levelUsingRatingCalculate).toBe(item.displayLevel);
       });
     });
 
-    it('プレイ情報が空の場合を適切に処理する', () => {
+    it("プレイ情報が空の場合を適切に処理する", () => {
       const result = generateMusicRatingInfoListFromMusicData(
         [],
         mockMusicData,
@@ -180,17 +182,17 @@ describe('Music Data Search Functions', () => {
       expect(result).toHaveLength(0);
     });
 
-    it('DX/ST判定が正しく動作する', () => {
+    it("DX/ST判定が正しく動作する", () => {
       const dxTestPlayInfo: PlayInfo[] = [
         {
           name: "系ぎて",
-          score: 0.9980,
+          score: 0.998,
           displayLevel: 15.0,
           isDx: true, // プレイ情報でDX
         },
         {
           name: "PANDORA PARADOXXX",
-          score: 0.9950,
+          score: 0.995,
           displayLevel: 15.0,
           isDx: false, // プレイ情報でST
         },
@@ -202,20 +204,18 @@ describe('Music Data Search Functions', () => {
         "r" as MusicDifficulty
       );
 
-      const keikeite = result.find(item => item.name === "系ぎて");
+      const keikeite = result.find((item) => item.name === "系ぎて");
       expect(keikeite?.isDx).toBe(true);
       expect(keikeite?.realLevel).toBe(15.0); // DX版のレベルを取得
 
-      const pandora = result.find(item => item.name === "PANDORA PARADOXXX");
+      const pandora = result.find((item) => item.name === "PANDORA PARADOXXX");
       expect(pandora?.isDx).toBe(false);
       expect(pandora?.realLevel).toBe(15.0); // ST版のレベルを取得
     });
 
-    it('特殊文字を含む楽曲名を正しく処理する', () => {
+    it("特殊文字を含む楽曲名を正しく処理する", () => {
       const specialMusicData = {
-        r: [
-          { title: "楽曲名に◆記号", level: 15.0, isDx: false, isNew: false },
-        ],
+        r: [{ title: "楽曲名に◆記号", level: 15.0, isDx: false, isNew: false }],
         m: [],
         e: [],
       };
@@ -223,7 +223,7 @@ describe('Music Data Search Functions', () => {
       const specialPlayInfo: PlayInfo[] = [
         {
           name: "楽曲名に◆記号",
-          score: 0.9950,
+          score: 0.995,
           displayLevel: 15.0,
           isDx: false,
         },

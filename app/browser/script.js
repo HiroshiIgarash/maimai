@@ -58,10 +58,10 @@ const generatePlayInfo = async (difficulty) => {
     difficulty === "e"
       ? 2
       : difficulty === "m"
-      ? 3
-      : difficulty === "r"
-      ? 4
-      : 0;
+        ? 3
+        : difficulty === "r"
+          ? 4
+          : 0;
   const doc = await fetchHTMLDocument(
     `https://maimaidx.jp/maimai-mobile/record/musicGenre/search/?genre=99&diff=${difficultyNum}`
   );
@@ -122,10 +122,10 @@ const generatePlayCount = async (difficulty) => {
     difficulty === "e"
       ? 2
       : difficulty === "m"
-      ? 3
-      : difficulty === "r"
-      ? 4
-      : 0;
+        ? 3
+        : difficulty === "r"
+          ? 4
+          : 0;
   const doc = await fetchHTMLDocument(
     `https://maimaidx.jp/maimai-mobile/record/musicMybest/search/?diff=${difficultyNum}`
   );

@@ -17,7 +17,11 @@ import {
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -40,7 +44,20 @@ const toDisplayGoalScore = (goalScore: number) => {
   return Math.round(goalScore * 1000000) / 1000000;
 };
 
-const RANKS = ["SSS+", "SSS", "SS+", "SS", "S+", "S", "AAA", "AA", "A", "B", "C", "D"]; // 必要に応じて調整
+const RANKS = [
+  "SSS+",
+  "SSS",
+  "SS+",
+  "SS",
+  "S+",
+  "S",
+  "AAA",
+  "AA",
+  "A",
+  "B",
+  "C",
+  "D",
+]; // 必要に応じて調整
 
 const PlayInfoTableView = ({
   musicRatingInfoList,
@@ -91,7 +108,6 @@ const PlayInfoTableView = ({
       }
     });
   };
-
 
   const handleSortOldOrNewStatus = () => {
     switch (sortOldOrNewStatus) {
@@ -148,9 +164,7 @@ const PlayInfoTableView = ({
 
   const handleRankChange = (rank: string) => {
     setSelectedRanks((prev) =>
-      prev.includes(rank)
-        ? prev.filter((r) => r !== rank)
-        : [...prev, rank]
+      prev.includes(rank) ? prev.filter((r) => r !== rank) : [...prev, rank]
     );
   };
 
@@ -241,8 +255,8 @@ const PlayInfoTableView = ({
                 {sortOldOrNewStatus === "NEW"
                   ? "[新]"
                   : sortOldOrNewStatus === "OLD"
-                  ? "[旧]"
-                  : ""}
+                    ? "[旧]"
+                    : ""}
               </button>
             </TableHead>
             <TableHead>表示レベル</TableHead>
@@ -260,7 +274,10 @@ const PlayInfoTableView = ({
                 <PopoverContent className="w-64">
                   <div className="space-y-3">
                     <h4 className="font-medium text-sm">目標スコア表示設定</h4>
-                    <RadioGroup value={goalScoreFilter} onValueChange={setGoalScoreFilter}>
+                    <RadioGroup
+                      value={goalScoreFilter}
+                      onValueChange={setGoalScoreFilter}
+                    >
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="all" id="all" />
                         <Label htmlFor="all">全て</Label>
@@ -296,17 +313,20 @@ const PlayInfoTableView = ({
         </TableHeader>
         <TableBody>
           {sortedMusicRating
-            .filter((musicRatingItem) => selectedRanks.includes(rankByScore(musicRatingItem.score)))
+            .filter((musicRatingItem) =>
+              selectedRanks.includes(rankByScore(musicRatingItem.score))
+            )
             .filter((musicRatingItem) => {
-              const { musicGoalRating } = calculateGoalRatingByMusicRating(musicRatingItem);
+              const { musicGoalRating } =
+                calculateGoalRatingByMusicRating(musicRatingItem);
               const goalScore = calculateGoalScore(
                 musicGoalRating,
                 musicRatingItem.levelUsingRatingCalculate
               );
-              
+
               if (goalScoreFilter === "all") return true;
               if (goalScoreFilter === "filtered") return goalScore <= 1.005;
-              
+
               const goalScorePercentage = goalScore * 100;
               const maxScoreValue = parseFloat(goalScoreFilter);
               return goalScorePercentage <= maxScoreValue;
@@ -319,8 +339,8 @@ const PlayInfoTableView = ({
                 musicRatingItem.levelUsingRatingCalculate
               );
 
-
-              if (sortOldOrNewStatus === "NEW" && !musicRatingItem.isNew) return;
+              if (sortOldOrNewStatus === "NEW" && !musicRatingItem.isNew)
+                return;
               if (
                 sortOldOrNewStatus === "OLD" &&
                 !(musicRatingItem.isNew === undefined || !musicRatingItem.isNew)
@@ -343,7 +363,9 @@ const PlayInfoTableView = ({
 
               return (
                 <TableRow
-                  className={cn(musicRatingItem.isPlayedRecently && "bg-red-50")}
+                  className={cn(
+                    musicRatingItem.isPlayedRecently && "bg-red-50"
+                  )}
                   key={`${musicRatingItem.name}-${musicRatingItem.difficulty}-${
                     musicRatingItem.isDx ? "dx" : "st"
                   }`}
@@ -380,12 +402,14 @@ const PlayInfoTableView = ({
                     {musicRatingItem.isNew
                       ? "◯"
                       : musicRatingItem.isNew === undefined
-                      ? "?"
-                      : ""}
+                        ? "?"
+                        : ""}
                   </TableCell>
                   <TableCell>{musicRatingItem.displayLevel}</TableCell>
                   <TableCell>{toDisplayGoalScore(goalScore)}</TableCell>
-                  <TableCell>{increaseMaimaiRatingWhenReachGoalScore}</TableCell>
+                  <TableCell>
+                    {increaseMaimaiRatingWhenReachGoalScore}
+                  </TableCell>
                   <TableCell>
                     {goalScore <= 1.005
                       ? Math.round(

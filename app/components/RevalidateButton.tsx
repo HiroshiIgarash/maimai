@@ -45,12 +45,12 @@ export default function RevalidateButton() {
         size="sm"
         className="w-fit"
       >
-        <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
+        <RefreshCw
+          className={`h-4 w-4 mr-2 ${isLoading ? "animate-spin" : ""}`}
+        />
         {isLoading ? "更新中..." : "譜面定数データを更新"}
       </Button>
-      {message && (
-        <p className="text-sm text-muted-foreground">{message}</p>
-      )}
+      {message && <p className="text-sm text-muted-foreground">{message}</p>}
     </div>
   );
 }

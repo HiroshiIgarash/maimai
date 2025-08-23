@@ -142,12 +142,20 @@ const lv5_rslt = [];
 
 export const expectedEdgeCaseData = {
   r: [
-    { title: "楽曲名に◆記号が入る楽曲", level: 15.0, isDx: false, isNew: false },
+    {
+      title: "楽曲名に◆記号が入る楽曲",
+      level: 15.0,
+      isDx: false,
+      isNew: false,
+    },
   ],
   m: [
-    { title: "楽曲名に[dx]が含まれる楽曲[dx]", level: 15.0, isDx: true, isNew: false },
+    {
+      title: "楽曲名に[dx]が含まれる楽曲[dx]",
+      level: 15.0,
+      isDx: true,
+      isNew: false,
+    },
   ],
-  e: [
-    { title: "長いクラス名", level: 15.0, isDx: false, isNew: true },
-  ],
+  e: [{ title: "長いクラス名", level: 15.0, isDx: false, isNew: true }],
 };

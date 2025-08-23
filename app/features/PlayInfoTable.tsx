@@ -59,7 +59,6 @@ const PlayInfoTable = ({ musicData }: playInfoTableProps) => {
     return Math.round(goalScore * 10000) / 10000;
   };
 
-
   return (
     <div className="space-y-16">
       <div>

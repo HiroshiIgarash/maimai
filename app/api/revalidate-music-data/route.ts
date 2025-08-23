@@ -7,9 +7,9 @@ export async function POST() {
     await revalidateMusicDataCache();
     console.log("Music data cache revalidated");
 
-    return NextResponse.json({ 
-      success: true, 
-      message: "Music data cache has been revalidated successfully" 
+    return NextResponse.json({
+      success: true,
+      message: "Music data cache has been revalidated successfully",
     });
   } catch (error) {
     console.error("Revalidation error:", error);

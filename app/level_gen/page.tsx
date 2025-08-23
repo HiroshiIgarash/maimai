@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 import Script from "next/script";
 
 function parseMaimaiData() {
-  const result: { 
-    r: Array<{title: string, level: number, isDx: boolean, isNew: boolean}>,
-    m: Array<{title: string, level: number, isDx: boolean, isNew: boolean}>, 
-    e: Array<{title: string, level: number, isDx: boolean, isNew: boolean}>
+  const result: {
+    r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+    m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+    e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
   } = { r: [], m: [], e: [] };
 
   [
