@@ -1,113 +1,257 @@
-import { JSDOM } from "jsdom";
 import { MusicDifficulty, MusicRatingInfo, PlayInfo } from "./types/type";
 import { calculateSingleRating } from "./functions_browser";
 
 const titleMap: { [key: string]: string } = {
   "バラバラ〜仮初レインボーローズ〜": "バラバラ",
   "アノーイング！さんさんウィーク！": "アノーイング！",
-  "ようこそジャパリパークへ": "ジャパリパーク",
+  ようこそジャパリパークへ: "ジャパリパーク",
   "にっこり^^調査隊のテーマ": "にっこり調査隊",
   "みくみくにしてあげる♪【してやんよ】": "みくみくにしてあげる",
-  "Link": "Link (nico)",
+  Link: "Link (nico)",
   "Bad Apple!! feat nomico": "Bad Apple!!",
-  "星界ちゃんと可不ちゃんのおつかい合騒曲": "おつかい合騒曲",
+  星界ちゃんと可不ちゃんのおつかい合騒曲: "おつかい合騒曲",
   "ギリギリ最強あいまいみー！": "あいまいみー",
-  "偉大なる悪魔は実は大天使パトラちゃん様なのだ！": "偉大なる悪魔は大天使パトラ",
+  "偉大なる悪魔は実は大天使パトラちゃん様なのだ！":
+    "偉大なる悪魔は大天使パトラ",
   "チュルリラ・チュルリラ・ダッダッダ！": "チュルリラ",
-  "メイトなやつら（FEAT. 天開司, 佐藤ホームズ, あっくん大魔王 &amp; 歌衣メイカ）": "メイトなやつら"
-}
+  "メイトなやつら（FEAT. 天開司, 佐藤ホームズ, あっくん大魔王 & 歌衣メイカ）":
+    "メイトなやつら",
+  "FREEDOM DiVE (tpz Overcute Remix)": "FREEDOME Dive(tpz)",
+  エンドマークに希望と涙を添えて: "エンドマーク",
+  "若い力 -SEGA HARD GIRLS MIX-": "若い力(セハガール)",
+  "セハガガガンバッちゃう！！": "セハガール",
+  "ガチャガチャきゅ～と・ふぃぎゅ@メイト": "ガチャガチャきゅ～と",
+  "トリドリ⇒モリモリ！Lovely fruits☆": "Lovely fruits",
+  単一指向性オーバーブルーム: "オーバーブルーム",
+  "撩乱乙女†無双劇": "撩乱乙女無双劇",
+  魔理沙は大変なものを盗んでいきました: "魔理沙",
+  "キャプテン・ムラサのケツアンカー": "ケツアンカー",
+  "Bad Apple!! feat.nomico ～五十嵐 撫子 Ver.～": "Bad Apple(撫子)",
+  "Help me, ERINNNNNN!!": "Help me, ERIN!!(new)",
+};
+
+
 
 
 /**
- * 譜面定数および旧曲・新曲を検索する
- * @param document table.htmlのドキュメント
- * @param musicTitle 楽曲名
- * @param difficulty 難易度
- * @returns 
+ * JSファイル内の配列データを文字列として抽出する
+ * @param scriptText JSファイルの内容
+ * @param variableName 抽出したい変数名（例：'lv15_rslt'）
+ * @returns 抽出された配列データ
  */
+export const extractArrayFromScript = (scriptText: string, variableName: string): string[][] => {
+  try {
+    // const lv15_rslt = [...]; の形式で配列データを抽出
+    const regex = new RegExp(`const\\s+${variableName}\\s*=\\s*(\\[[\\s\\S]*?\\n\\];)`, 'gm');
+    const match = scriptText.match(regex);
+    
+    if (!match || !match[0]) {
+      console.warn(`Variable ${variableName} not found in script`);
+      return [];
+    }
+    
+    // 配列部分だけを抽出
+    const arrayMatch = match[0].match(/\[([\s\S]*?)\];/);
+    if (!arrayMatch) {
+      console.warn(`Array content for ${variableName} not found`);
+      return [];
+    }
+    
+    const arrayContent = '[' + arrayMatch[1] + ']';
+    return eval(arrayContent);
+  } catch (error) {
+    console.error(`Error extracting ${variableName}:`, error);
+    return [];
+  }
+};
 
-const searchRealLevelAndIsNew = (
-  document: Document,
+/**
+ * HTMLスパンタグから楽曲情報を抽出する
+ * @param item HTMLスパンタグの文字列
+ * @returns パースされた楽曲情報
+ */
+export const parseMusicItem = (item: string): { title: string; difficulty: string; isNew: boolean; isDx: boolean } | null => {
+  try {
+    // HTMLタグから楽曲名を抽出: <span class='...'>楽曲名</span>
+    const textMatch = item.match(/>([^<]+)</);
+    const text = textMatch?.[1];
+    if (!text) return null;
+
+    // [dx]がついているかチェック
+    const title = text.endsWith("[dx]") ? text.slice(0, -4) : text;
+    const isDx = text.endsWith("[dx]");
+
+    // クラス名から難易度と新曲フラグを抽出
+    const classMatch = item.match(/class='([^']+)'/);
+    const className = classMatch?.[1];
+    if (!className) return null;
+
+    // wk_r, wk_m, wk_e から難易度を抽出
+    const difficulty = className.split('_')[1]; // wk_r -> r, wk_m -> m, wk_e -> e
+    const isNew = className.endsWith("_n");
+
+    // 有効な難易度でない場合はnullを返す
+    if (!difficulty || !["r", "m", "e"].includes(difficulty)) {
+      return null;
+    }
+
+    return {
+      title,
+      difficulty,
+      isNew,
+      isDx,
+    };
+  } catch (error) {
+    console.error('Error parsing music item:', error, item);
+    return null;
+  }
+};
+
+/**
+ * JSファイルから楽曲データを文字列処理で取得してパースする
+ * @returns
+ */
+export const fetchMusicData = async (): Promise<{
+  r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+  m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+  e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+}> => {
+  const response = await fetch('https://sgimera.github.io/mai_RatingAnalyzer/scripts_maimai/maidx_in_lv_data_prismplus.js');
+  const scriptText = await response.text();
+  
+  const result: { 
+    r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+    m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+    e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+  } = { r: [], m: [], e: [] };
+
+  // レベル別の配列変数名とその基準レベル
+  const levelConfigs = [
+    { variable: 'lv15_rslt', baseLevel: 15 },
+    { variable: 'lv14_rslt', baseLevel: 14 },
+    { variable: 'lv13_rslt', baseLevel: 13 },
+    { variable: 'lv12_rslt', baseLevel: 12 },
+    { variable: 'lv11_rslt', baseLevel: 11 },
+    { variable: 'lv10_rslt', baseLevel: 10 },
+    { variable: 'lv9_rslt', baseLevel: 9 },
+    { variable: 'lv8_rslt', baseLevel: 8 },
+    { variable: 'lv7_rslt', baseLevel: 7 },
+    { variable: 'lv6_rslt', baseLevel: 6 },
+    { variable: 'lv5_rslt', baseLevel: 5 },
+  ];
+
+  // 各レベル配列を処理
+  for (const config of levelConfigs) {
+    const levelArray = extractArrayFromScript(scriptText, config.variable);
+    
+    levelArray.forEach((subArray, subIndex) => {
+      // レベル計算: lv15_rsltは15.0、lv14_rsltは14.9,14.8,14.7...のようにサブインデックスで調整
+      // lv15_rsltの場合: 15.0 (subIndex=0のみ)
+      // lv14_rsltの場合: 14.9(subIndex=0), 14.8(subIndex=1), 14.7(subIndex=2)...
+      // lv14_rslt[0] = 14.9, lv14_rslt[1] = 14.8 のように計算
+      const level = config.baseLevel === 15 
+        ? 15.0 
+        : Math.round((config.baseLevel + 0.9 - 0.1 * subIndex) * 10) / 10;
+      
+      subArray.forEach((item) => {
+        const musicInfo = parseMusicItem(item);
+        if (!musicInfo) return;
+
+        const { title, difficulty, isNew, isDx } = musicInfo;
+
+        // 難易度別にデータを振り分け
+        if (difficulty === "r" || difficulty === "m" || difficulty === "e") {
+          result[difficulty].push({
+            title,
+            level,
+            isDx,
+            isNew,
+          });
+        }
+      });
+    });
+  }
+
+  return result;
+};
+
+/**
+ * 新しい楽曲データから譜面定数および旧曲・新曲を検索する
+ * @param musicData 楽曲データ
+ * @param musicTitle 楽曲名
+ * @param isDx DX譜面かどうか
+ * @param difficulty 難易度
+ * @returns
+ */
+const searchRealLevelAndIsNewFromMusicData = (
+  musicData: {
+    r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+    m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+    e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+  },
   musicTitle: string,
   isDx: boolean,
-  difficulty: MusicDifficulty): {
-    level: number | undefined,
-    isNew: boolean | undefined
-  } => {
-  const title = titleMap[musicTitle] || musicTitle
-  const musicElms = document.querySelectorAll<HTMLElement>(`.wk_${difficulty},.wk_${difficulty}_n`); // difficultyに応じた全楽曲を取得
+  difficulty: MusicDifficulty
+): {
+  level: number | undefined;
+  isNew: boolean | undefined;
+} => {
+  const title = titleMap[musicTitle] || musicTitle;
 
-  // 楽曲名にエスケープ必須の文字列が入っている場合の対策
-  const escapedMusicTitle = title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  // DXの場合は[dx]付きの楽曲名を、そうでない場合は[dx]がつかないものを探す正規表現
-  const reg = isDx ? new RegExp(`^${escapedMusicTitle}\\[dx`) : new RegExp(`^${escapedMusicTitle}$`)
-
-  const targetMusicElm = Array.from(musicElms).filter(m => m.textContent?.match(reg))
-
-  // 該当の楽曲がなかったらlevel, isNewともにundefinedを返す
-  if (!targetMusicElm.length) {
+  const difficultyData = musicData[difficulty];
+  if (!difficultyData) {
     return {
       level: undefined,
-      isNew: undefined
-    }
+      isNew: undefined,
+    };
   }
 
-  const isNew = targetMusicElm[0].classList.contains(`wk_${difficulty}_n`)
+  const targetMusic = difficultyData.find(
+    (music) => music.title === title && music.isDx === isDx
+  );
 
-  const td = targetMusicElm.at(0)?.closest("td")
-
-  if (td?.classList.contains("not_eval_music")) {
-    // 未検証譜面
-
+  if (!targetMusic) {
     return {
       level: undefined,
-      isNew
-    }
-  } else {
-    // 検証済
-
-    const levelCell = targetMusicElm.at(0)?.closest("td")?.previousElementSibling
-    const level = Number(levelCell?.textContent?.replace(/\(.*/, ""))
-    return {
-      level: level,
-      isNew
-    }
+      isNew: undefined,
+    };
   }
 
-}
+  return {
+    level: targetMusic.level,
+    isNew: targetMusic.isNew,
+  };
+};
 
 
 /**
- * url先のDocumentを返す
- * @param url 
- * @returns 
+ * プレイ情報から楽曲レーティング情報のリストを返す（楽曲データ版）
+ * @param playInfo
+ * @param musicData
+ * @param difficulty
+ * @returns
  */
-export const fetchHTMLDocument = async (url: string) => {
-  const res = await fetch(url)
-  const text = await res.text()
-  const dom = new JSDOM(text)
-
-  return dom.window.document
-}
-
-
-
-
-/**
- * プレイ情報から楽曲レーティング情報のリストを返す
- * @param playInfo 
- * @param tableDocument 
- * @param difficulty 
- * @returns 
- */
-export const generateMusicRatingInfoListFromPlayInfo = (playInfo: PlayInfo[], tableDocument: Document, difficulty: MusicDifficulty): MusicRatingInfo[] => {
-  const musicRatingInfoList = playInfo.map(info => {
-    const { name, score, isDx, displayLevel, count } = info
-    const { level: realLevel, isNew } = searchRealLevelAndIsNew(tableDocument, info.name, info.isDx, difficulty)
+export const generateMusicRatingInfoListFromMusicData = (
+  playInfo: PlayInfo[],
+  musicData: {
+    r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+    m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+    e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
+  },
+  difficulty: MusicDifficulty
+): MusicRatingInfo[] => {
+  const musicRatingInfoList = playInfo.map((info) => {
+    const { name, score, isDx, displayLevel, count, isPlayedRecently } = info;
+    const { level: realLevel, isNew } = searchRealLevelAndIsNewFromMusicData(
+      musicData,
+      info.name,
+      info.isDx,
+      difficulty
+    );
     /** レーティング算出時に用いるレベル。レベル不明であれば表示されるレベルを用いる */
-    const levelUsingRatingCalculate = realLevel || displayLevel
+    const levelUsingRatingCalculate = realLevel || displayLevel;
 
-    const rating = calculateSingleRating(levelUsingRatingCalculate, score)
+    const rating = calculateSingleRating(levelUsingRatingCalculate, score);
 
     return {
       name,
@@ -119,29 +263,37 @@ export const generateMusicRatingInfoListFromPlayInfo = (playInfo: PlayInfo[], ta
       realLevel,
       displayLevel,
       levelUsingRatingCalculate,
-      count
-    }
-  })
+      count,
+      isPlayedRecently,
+    };
+  });
 
-  return musicRatingInfoList
-}
-
+  return musicRatingInfoList;
+};
 
 /**
  * 楽曲レーティング情報からでらっくすRATINGを算出する
  * @param musicRatingInfoList 楽曲レーティング情報
- * @returns 
+ * @returns
  */
-export const calculateMaimaiRating = async (musicRatingInfoList: MusicRatingInfo[]) => {
+export const calculateMaimaiRating = (
+  musicRatingInfoList: MusicRatingInfo[]
+) => {
   const targetMusicRatingInfoList = [
-    ...musicRatingInfoList.filter(musicRatingInfo => musicRatingInfo.isNew).slice(0, 15),
-    ...musicRatingInfoList.filter(musicRatingInfo => !musicRatingInfo.isNew).slice(0, 35)
-  ]
+    ...musicRatingInfoList
+      .filter((musicRatingInfo) => musicRatingInfo.isNew)
+      .slice(0, 15),
+    ...musicRatingInfoList
+      .filter((musicRatingInfo) => !musicRatingInfo.isNew)
+      .slice(0, 35),
+  ];
 
-  const rating = targetMusicRatingInfoList.reduce((prev, currentMusicRatingInfo) => {
-    return prev + currentMusicRatingInfo.rating
-  }, 0)
+  const rating = targetMusicRatingInfoList.reduce(
+    (prev, currentMusicRatingInfo) => {
+      return prev + currentMusicRatingInfo.rating;
+    },
+    0
+  );
 
-  return rating
-}
-
+  return rating;
+};

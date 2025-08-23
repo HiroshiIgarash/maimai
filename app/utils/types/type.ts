@@ -1,10 +1,10 @@
 export const MusicDifficultyMap = {
-  e: 'EX',
-  m: 'Master',
-  r: 'Re',
-} as const
+  e: "EX",
+  m: "Master",
+  r: "Re",
+} as const;
 
-export type MusicDifficulty = keyof typeof MusicDifficultyMap
+export type MusicDifficulty = keyof typeof MusicDifficultyMap;
 
 /**
  * maimaiでらっくすNETから取得できるプレイ情報の型
@@ -14,18 +14,20 @@ export interface PlayInfo {
   score: number;
   displayLevel: number;
   isDx: boolean;
-  count?: number
+  count?: number;
+  isPlayedRecently?: boolean;
 }
 
 export interface MusicRatingInfo {
-  name: string,
-  difficulty: MusicDifficulty,
-  isDx: boolean,
-  isNew: boolean | undefined,
-  score: number,
-  rating: number,
-  realLevel: number | undefined,
-  displayLevel: number
-  levelUsingRatingCalculate: number
-  count?: number
+  name: string;
+  difficulty: MusicDifficulty;
+  isDx: boolean;
+  isNew: boolean | undefined;
+  score: number;
+  rating: number;
+  realLevel: number | undefined;
+  displayLevel: number;
+  levelUsingRatingCalculate: number;
+  count?: number;
+  isPlayedRecently?: boolean;
 }

@@ -1,21 +1,17 @@
 import fs from "fs";
 import PlayInfoInputArea from "./features/PlayInfoInputArea";
 import PlayInfoTable from "./features/PlayInfoTable";
-import { fetchHTMLDocument } from "./utils/functions";
+import { fetchMusicData } from "./utils/functions";
 import { join } from "path";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { headers } from "next/headers";
-
-
 
 export default async function Home() {
-  const domain = headers().get('x-url') || "";
-  const REAL_LEVEL_TABLE_URL = `${domain}browser/table/`
-  const tableDocument = await fetchHTMLDocument(REAL_LEVEL_TABLE_URL)
+  const musicData = await fetchMusicData();
 
-
-  const scriptString = fs.readFileSync(join(__dirname, "../../../app/browser/script.js")).toString()
+  const scriptString = fs
+    .readFileSync(join(__dirname, "../../../app/browser/script.js"))
+    .toString();
 
   return (
     <>
@@ -25,7 +21,10 @@ export default async function Home() {
         </h1>
         譜面定数の参考ページは
         <Button asChild variant={"link"}>
-          <Link href="https://sgimera.github.io/mai_RatingAnalyzer/maidx_inner_level_23_prism.html" target="_blank">
+          <Link
+            href="https://sgimera.github.io/mai_RatingAnalyzer/maidx_inner_level_24_prismplus.html"
+            target="_blank"
+          >
             こちら
           </Link>
         </Button>
@@ -33,7 +32,7 @@ export default async function Home() {
           <PlayInfoInputArea>{scriptString}</PlayInfoInputArea>
         </div>
         <div>
-          <PlayInfoTable tableDocument={tableDocument} />
+          <PlayInfoTable musicData={musicData} />
         </div>
       </div>
     </>
