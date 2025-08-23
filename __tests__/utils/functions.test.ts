@@ -2,8 +2,19 @@ import { describe, it, expect, jest, beforeEach } from "@jest/globals";
 import {
   extractArrayFromScript,
   parseMusicItem,
-  fetchMusicData,
+  // fetchMusicData,
 } from "@/app/utils/functions";
+import {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // @ts-expect-error: 型エラー回避のため
+  fetchMusicDataInternal,
+} from "@/app/utils/functions";
+import {
+  // @ts-ignore
+  // eslint-disable-next-line
+  __RewireAPI__ as functionsRewireAPI,
+} from "@/app/utils/functions";
+
 import {
   mockMaimaiScriptText,
   mockEdgeCaseScriptText,
@@ -150,7 +161,7 @@ describe("Music Data Parser Functions", () => {
         text: () => Promise.resolve(mockMaimaiScriptText),
       } as Response);
 
-      const result = await fetchMusicData();
+      const result = await fetchMusicDataInternal();
 
       expect(result.r).toHaveLength(7);
       expect(result.m).toHaveLength(7);
@@ -193,7 +204,7 @@ describe("Music Data Parser Functions", () => {
         text: () => Promise.resolve(mockMaimaiScriptText),
       } as Response);
 
-      const result = await fetchMusicData();
+      const result = await fetchMusicDataInternal();
 
       // ユーザー指定のレベル計算ロジック:
       // lv15_rslt[0] -> 15.0
@@ -201,9 +212,15 @@ describe("Music Data Parser Functions", () => {
       // lv14_rslt[1] -> 14.8
       // lv13_rslt[0] -> 13.0
 
-      const level15Songs = result.r.filter((song) => song.level === 15.0);
-      const level149Songs = result.r.filter((song) => song.level === 14.9);
-      const level148Songs = result.r.filter((song) => song.level === 14.8);
+      const level15Songs = result.r.filter(
+        (song: { level: number }) => song.level === 15.0
+      );
+      const level149Songs = result.r.filter(
+        (song: { level: number }) => song.level === 14.9
+      );
+      const level148Songs = result.r.filter(
+        (song: { level: number }) => song.level === 14.8
+      );
 
       // 実際の結果をチェック
       expect(result.r).toHaveLength(7);
@@ -221,7 +238,7 @@ describe("Music Data Parser Functions", () => {
         text: () => Promise.resolve(mockEdgeCaseScriptText),
       } as Response);
 
-      const result = await fetchMusicData();
+      const result = await fetchMusicDataInternal();
 
       expect(result.r).toHaveLength(1);
       expect(result.m).toHaveLength(1);
@@ -238,7 +255,7 @@ describe("Music Data Parser Functions", () => {
     it("fetchエラー時の処理", async () => {
       mockFetch.mockRejectedValueOnce(new Error("Network error"));
 
-      await expect(fetchMusicData()).rejects.toThrow("Network error");
+      await expect(fetchMusicDataInternal()).rejects.toThrow("Network error");
     });
 
     it("空のレスポンス時の処理", async () => {
@@ -247,7 +264,7 @@ describe("Music Data Parser Functions", () => {
         text: () => Promise.resolve(""),
       } as Response);
 
-      const result = await fetchMusicData();
+      const result = await fetchMusicDataInternal();
 
       expect(result.r).toEqual([]);
       expect(result.m).toEqual([]);

@@ -136,17 +136,14 @@ export const revalidateMusicDataCache = async (): Promise<void> => {
 };
 
 // 内部の楽曲データ取得関数（キャッシュなし）
-const fetchMusicDataInternal = async (): Promise<{
+export const fetchMusicDataInternal = async (): Promise<{
   r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
   m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
   e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
 }> => {
   console.log("Fetching fresh music data from external source");
   const response = await fetch(
-    "https://sgimera.github.io/mai_RatingAnalyzer/scripts_maimai/maidx_in_lv_data_prismplus.js",
-    {
-      next: { revalidate: false }, // APIからの取得時はキャッシュしない
-    }
+    "https://sgimera.github.io/mai_RatingAnalyzer/scripts_maimai/maidx_in_lv_data_prismplus.js"
   );
   const scriptText = await response.text();
 
