@@ -1,10 +1,10 @@
 /**
  * レーティング計算機能
- * 
+ *
  * maimai DXのレーティング計算に関する機能を提供します。
  * スコアからランクへの変換、単曲レーティングの計算、
  * 目標スコアの算出、総合レーティングの計算を行います。
- * 
+ *
  * 主な機能：
  * - スコアからランク係数・ランク名の算出
  * - 単曲レーティングの計算
@@ -88,96 +88,124 @@ export const calculateSingleRating = (
 };
 
 /**
+ * 指定したランク内での最低スコア時の単曲レートを計算する
+ *
+ * 例) ランクSであればスコア100.0%時の単曲レートを計算
+ */
+const calculateMinRatingInRank = (
+  /** ランク */
+  rank: keyof typeof rankNeedScoreMap,
+  /** 譜面定数 */
+  level: number
+): number => {
+  return Math.floor(level * rankNeedScoreMap[rank] * rateByRank(rank));
+};
+
+/**
+ * 90%のスコアで目標単曲レートを達成できるかチェック
+ *
+ * 90%スコア時の単曲レート: Math.floor(level * 0.9 * 13)
+ * 90%でも目標レートに届くなら、それ以下のスコアでも達成可能だが、
+ * 安全な値として90%（0.9）を返すことにしている
+ */
+const canAchieveWithNinetyPercent = (
+  /** 目標単曲レート */
+  goalMusicRating: number,
+  /** 譜面定数 */
+  level: number
+): boolean => {
+  return Math.floor(level * 0.9 * 13) >= goalMusicRating;
+};
+
+/**
+ * 指定ランク範囲内での必要スコアを計算
+ */
+const calculateScoreForRankRange = (
+  /** 目標単曲レート */
+  goalMusicRating: number,
+  /** 譜面定数 */
+  level: number,
+  /** 現在のランク */
+  currentRank: keyof typeof rankNeedScoreMap,
+  /** 次のランク */
+  nextRank: keyof typeof rankNeedScoreMap
+): number => {
+  return Math.min(
+    goalMusicRating / (rateByRank(currentRank) * level),
+    rankNeedScoreMap[nextRank]
+  );
+};
+
+/**
+ * ランク範囲の条件チェック
+ */
+const checkRankRange = (
+  /** 目標単曲レート */
+  goalMusicRating: number,
+  /** 譜面定数 */
+  level: number,
+  /** 現在のランク */
+  currentRank: keyof typeof rankNeedScoreMap,
+  /** 次のランク */
+  nextRank: keyof typeof rankNeedScoreMap
+): boolean => {
+  const minCurrentRating = calculateMinRatingInRank(currentRank, level);
+  const minNextRating = calculateMinRatingInRank(nextRank, level);
+  return minCurrentRating >= goalMusicRating && minNextRating < goalMusicRating;
+};
+
+/**
  * 目標単曲レートに達するのに必要な楽曲スコアを算出する
+ * 90.0%でも達成可能な場合は0.9を返す
  */
 export const calculateGoalScore = (
   /** 目標単曲レート */
   goalMusicRating: number,
   /** 譜面定数 */
   level: number
-) => {
-  /** 指定したランクでの最低レーティング */
-  const minRatingInRank = (rank: keyof typeof rankNeedScoreMap) => {
-    return Math.floor(level * rankNeedScoreMap[rank] * rateByRank(rank));
-  };
-
-  // ランクA以下で達成する場合0.9を返す
-  if (Math.floor(level * 0.9 * 13) >= goalMusicRating) return 0.9;
+): number => {
+  // 90%のスコアで既に目標レートに到達する場合、安全値として90%を返す
+  if (canAchieveWithNinetyPercent(goalMusicRating, level)) {
+    return 0.9;
+  }
 
   // ランクAA範囲内、もしくはランクAAA到達で達成する場合
-  if (
-    minRatingInRank("AAA") >= goalMusicRating &&
-    minRatingInRank("AA") < goalMusicRating
-  ) {
-    return Math.min(
-      goalMusicRating / (rateByRank("AA") * level),
-      rankNeedScoreMap["AAA"]
-    );
+  if (checkRankRange(goalMusicRating, level, "AAA", "AA")) {
+    return calculateScoreForRankRange(goalMusicRating, level, "AA", "AAA");
   }
 
   // ランクAAA範囲内、もしくはランクS到達で達成する場合
-  if (
-    minRatingInRank("S") >= goalMusicRating &&
-    minRatingInRank("AAA") < goalMusicRating
-  ) {
-    return Math.min(
-      goalMusicRating / (rateByRank("AAA") * level),
-      rankNeedScoreMap["S"]
-    );
+  if (checkRankRange(goalMusicRating, level, "S", "AAA")) {
+    return calculateScoreForRankRange(goalMusicRating, level, "AAA", "S");
   }
 
   // ランクS範囲内、もしくはランクS+到達で達成する場合
-  if (
-    minRatingInRank("S_PLUS") >= goalMusicRating &&
-    minRatingInRank("S") < goalMusicRating
-  ) {
-    return Math.min(
-      goalMusicRating / (rateByRank("S") * level),
-      rankNeedScoreMap["S_PLUS"]
-    );
+  if (checkRankRange(goalMusicRating, level, "S_PLUS", "S")) {
+    return calculateScoreForRankRange(goalMusicRating, level, "S", "S_PLUS");
   }
 
   // ランクS+範囲内、もしくはランクSS到達で達成する場合
-  if (
-    minRatingInRank("SS") >= goalMusicRating &&
-    minRatingInRank("S_PLUS") < goalMusicRating
-  ) {
-    return Math.min(
-      goalMusicRating / (rateByRank("S_PLUS") * level),
-      rankNeedScoreMap["SS"]
-    );
+  if (checkRankRange(goalMusicRating, level, "SS", "S_PLUS")) {
+    return calculateScoreForRankRange(goalMusicRating, level, "S_PLUS", "SS");
   }
 
   // ランクSS範囲内、もしくはランクSS+到達で達成する場合
-  if (
-    minRatingInRank("SS_PLUS") >= goalMusicRating &&
-    minRatingInRank("SS") < goalMusicRating
-  ) {
-    return Math.min(
-      goalMusicRating / (rateByRank("SS") * level),
-      rankNeedScoreMap["SS_PLUS"]
-    );
+  if (checkRankRange(goalMusicRating, level, "SS_PLUS", "SS")) {
+    return calculateScoreForRankRange(goalMusicRating, level, "SS", "SS_PLUS");
   }
 
   // ランクSS+範囲内、もしくはランクSSS到達で達成する場合
-  if (
-    minRatingInRank("SSS") >= goalMusicRating &&
-    minRatingInRank("SS_PLUS") < goalMusicRating
-  ) {
-    return Math.min(
-      goalMusicRating / (rateByRank("SS_PLUS") * level),
-      rankNeedScoreMap["SSS"]
-    );
+  if (checkRankRange(goalMusicRating, level, "SSS", "SS_PLUS")) {
+    return calculateScoreForRankRange(goalMusicRating, level, "SS_PLUS", "SSS");
   }
 
   // ランクSSS範囲内、もしくはランクSSS+到達で達成する場合
-  if (
-    minRatingInRank("SSS_PLUS") >= goalMusicRating &&
-    minRatingInRank("SSS") < goalMusicRating
-  ) {
-    return Math.min(
-      goalMusicRating / (rateByRank("SSS") * level),
-      rankNeedScoreMap["SSS_PLUS"]
+  if (checkRankRange(goalMusicRating, level, "SSS_PLUS", "SSS")) {
+    return calculateScoreForRankRange(
+      goalMusicRating,
+      level,
+      "SSS",
+      "SSS_PLUS"
     );
   }
 

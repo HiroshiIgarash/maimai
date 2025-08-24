@@ -11,7 +11,7 @@
  */
 
 import { unstable_cache, revalidateTag } from "next/cache";
-import { MusicDataByDifficulty, ParsedMusicItem } from "./types/type";
+import { MusicDataByDifficulty, ParsedMusicItem, LevelConfig, MusicInfo } from "./types/type";
 
 /**
  * JSファイル内の配列データを文字列として抽出する
@@ -101,68 +101,100 @@ export const revalidateMusicDataCache = async (): Promise<void> => {
 };
 
 /**
+ * レベル設定情報の一覧を取得
+ */
+const getLevelConfigs = (): LevelConfig[] => [
+  { variable: "lv15_rslt", baseLevel: 15 },
+  { variable: "lv14_rslt", baseLevel: 14 },
+  { variable: "lv13_rslt", baseLevel: 13 },
+  { variable: "lv12_rslt", baseLevel: 12 },
+  { variable: "lv11_rslt", baseLevel: 11 },
+  { variable: "lv10_rslt", baseLevel: 10 },
+  { variable: "lv9_rslt", baseLevel: 9 },
+  { variable: "lv8_rslt", baseLevel: 8 },
+  { variable: "lv7_rslt", baseLevel: 7 },
+  { variable: "lv6_rslt", baseLevel: 6 },
+  { variable: "lv5_rslt", baseLevel: 5 },
+];
+
+/**
+ * サブインデックスから実際のレベル値を計算
+ */
+const calculateLevel = (
+  /** レベル設定 */
+  config: LevelConfig,
+  /** サブインデックス */
+  subIndex: number
+): number => {
+  if (config.baseLevel === 15) {
+    return 15.0;
+  }
+  return Math.round((config.baseLevel + 0.9 - 0.1 * subIndex) * 10) / 10;
+};
+
+/**
+ * パースした楽曲情報からMusicInfoを作成
+ */
+const createMusicInfo = (
+  /** パースした楽曲情報 */
+  musicInfo: ParsedMusicItem,
+  /** レベル値 */
+  level: number
+): MusicInfo => ({
+  title: musicInfo.title,
+  level,
+  isDx: musicInfo.isDx,
+  isNew: musicInfo.isNew,
+});
+
+/**
+ * 単一レベルの配列データを処理
+ */
+const processLevelArray = (
+  /** スクリプトテキスト */
+  scriptText: string,
+  /** レベル設定 */
+  config: LevelConfig,
+  /** 結果格納用オブジェクト */
+  result: MusicDataByDifficulty
+): void => {
+  const levelArray = extractArrayFromScript(scriptText, config.variable);
+
+  levelArray.forEach((subArray, subIndex) => {
+    const level = calculateLevel(config, subIndex);
+
+    subArray.forEach((item) => {
+      const musicInfo = parseMusicItem(item);
+      if (!musicInfo) return;
+
+      const { difficulty } = musicInfo;
+      if (difficulty === "r" || difficulty === "m" || difficulty === "e") {
+        const musicData = createMusicInfo(musicInfo, level);
+        result[difficulty].push(musicData);
+      }
+    });
+  });
+};
+
+/**
  * 内部の楽曲データ取得関数（キャッシュなし）
  */
-export const fetchMusicDataInternal =
-  async (): Promise<MusicDataByDifficulty> => {
-    console.log("Fetching fresh music data from external source");
-    const response = await fetch(
-      "https://sgimera.github.io/mai_RatingAnalyzer/scripts_maimai/maidx_in_lv_data_prismplus.js"
-    );
-    const scriptText = await response.text();
+export const fetchMusicDataInternal = async (): Promise<MusicDataByDifficulty> => {
+  console.log("Fetching fresh music data from external source");
+  const response = await fetch(
+    "https://sgimera.github.io/mai_RatingAnalyzer/scripts_maimai/maidx_in_lv_data_prismplus.js"
+  );
+  const scriptText = await response.text();
 
-    const result: MusicDataByDifficulty = { r: [], m: [], e: [] };
+  const result: MusicDataByDifficulty = { r: [], m: [], e: [] };
+  const levelConfigs = getLevelConfigs();
 
-    // レベル別の配列変数名とその基準レベル
-    const levelConfigs = [
-      { variable: "lv15_rslt", baseLevel: 15 },
-      { variable: "lv14_rslt", baseLevel: 14 },
-      { variable: "lv13_rslt", baseLevel: 13 },
-      { variable: "lv12_rslt", baseLevel: 12 },
-      { variable: "lv11_rslt", baseLevel: 11 },
-      { variable: "lv10_rslt", baseLevel: 10 },
-      { variable: "lv9_rslt", baseLevel: 9 },
-      { variable: "lv8_rslt", baseLevel: 8 },
-      { variable: "lv7_rslt", baseLevel: 7 },
-      { variable: "lv6_rslt", baseLevel: 6 },
-      { variable: "lv5_rslt", baseLevel: 5 },
-    ];
+  for (const config of levelConfigs) {
+    processLevelArray(scriptText, config, result);
+  }
 
-    // 各レベル配列を処理
-    for (const config of levelConfigs) {
-      const levelArray = extractArrayFromScript(scriptText, config.variable);
-
-      levelArray.forEach((subArray, subIndex) => {
-        // レベル計算: lv15_rsltは15.0、lv14_rsltは14.9,14.8,14.7...のようにサブインデックスで調整
-        // lv15_rsltの場合: 15.0 (subIndex=0のみ)
-        // lv14_rsltの場合: 14.9(subIndex=0), 14.8(subIndex=1), 14.7(subIndex=2)...
-        // lv14_rslt[0] = 14.9, lv14_rslt[1] = 14.8 のように計算
-        const level =
-          config.baseLevel === 15
-            ? 15.0
-            : Math.round((config.baseLevel + 0.9 - 0.1 * subIndex) * 10) / 10;
-
-        subArray.forEach((item) => {
-          const musicInfo = parseMusicItem(item);
-          if (!musicInfo) return;
-
-          const { title, difficulty, isNew, isDx } = musicInfo;
-
-          // 難易度別にデータを振り分け
-          if (difficulty === "r" || difficulty === "m" || difficulty === "e") {
-            result[difficulty].push({
-              title,
-              level,
-              isDx,
-              isNew,
-            });
-          }
-        });
-      });
-    }
-
-    return result;
-  };
+  return result;
+};
 
 /**
  * JSファイルから楽曲データを文字列処理で取得してパースする（キャッシュ付き）

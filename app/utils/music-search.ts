@@ -33,7 +33,7 @@ export const searchRealLevelAndIsNewFromMusicData = (
   /** 難易度 */
   difficulty: MusicDifficulty
 ): LevelSearchResult => {
-  const title = (titleMap as Record<string, string>)[musicTitle] || musicTitle;
+  const title = normalizeMusicTitle(musicTitle);
 
   const difficultyData = musicData[difficulty];
   if (!difficultyData) {
@@ -61,6 +61,54 @@ export const searchRealLevelAndIsNewFromMusicData = (
 };
 
 /**
+ * 楽曲名を正規化する
+ */
+const normalizeMusicTitle = (
+  /** 元の楽曲名 */
+  originalTitle: string
+): string => {
+  return (titleMap as Record<string, string>)[originalTitle] || originalTitle;
+};
+
+/**
+ * 単一のプレイ情報から楽曲レーティング情報を生成
+ */
+const createMusicRatingInfo = (
+  /** プレイ情報 */
+  info: PlayInfo,
+  /** 楽曲データ */
+  musicData: MusicDataByDifficulty,
+  /** 難易度 */
+  difficulty: MusicDifficulty
+): MusicRatingInfo => {
+  const { name, score, isDx, displayLevel, count, isPlayedRecently } = info;
+  const { level: realLevel, isNew } = searchRealLevelAndIsNewFromMusicData(
+    musicData,
+    name,
+    isDx,
+    difficulty
+  );
+  
+  /** レーティング算出時に用いるレベル。レベル不明であれば表示されるレベルを用いる */
+  const levelUsingRatingCalculate = realLevel || displayLevel;
+  const rating = calculateSingleRating(levelUsingRatingCalculate, score);
+
+  return {
+    name,
+    difficulty,
+    isDx,
+    isNew,
+    score,
+    rating,
+    realLevel,
+    displayLevel,
+    levelUsingRatingCalculate,
+    count,
+    isPlayedRecently,
+  };
+};
+
+/**
  * プレイ情報から楽曲レーティング情報のリストを返す（楽曲データ版）
  */
 export const generateMusicRatingInfoListFromMusicData = (
@@ -71,33 +119,7 @@ export const generateMusicRatingInfoListFromMusicData = (
   /** 難易度 */
   difficulty: MusicDifficulty
 ): MusicRatingInfo[] => {
-  const musicRatingInfoList = playInfo.map((info) => {
-    const { name, score, isDx, displayLevel, count, isPlayedRecently } = info;
-    const { level: realLevel, isNew } = searchRealLevelAndIsNewFromMusicData(
-      musicData,
-      info.name,
-      info.isDx,
-      difficulty
-    );
-    /** レーティング算出時に用いるレベル。レベル不明であれば表示されるレベルを用いる */
-    const levelUsingRatingCalculate = realLevel || displayLevel;
-
-    const rating = calculateSingleRating(levelUsingRatingCalculate, score);
-
-    return {
-      name,
-      difficulty,
-      isDx,
-      isNew,
-      score,
-      rating,
-      realLevel,
-      displayLevel,
-      levelUsingRatingCalculate,
-      count,
-      isPlayedRecently,
-    };
-  });
-
-  return musicRatingInfoList;
+  return playInfo.map((info) => 
+    createMusicRatingInfo(info, musicData, difficulty)
+  );
 };
