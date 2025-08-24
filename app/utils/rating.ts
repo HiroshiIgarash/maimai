@@ -115,17 +115,35 @@ const findMinimumScore = (
   /** 探索範囲の上限 */
   right: number
 ): number => {
-  // 非常に細かい刻みで線形探索して正確な最小値を見つける
-  const step = 0.000001;
-  
-  for (let score = left; score <= right; score += step) {
-    const actualRating = calculateSingleRating(level, score);
+  // 二分探索で最小スコアを高速に見つける
+  const precision = 0.000001;
+  let low = left;
+  let high = right;
+  let answer = right;
+
+  while (high - low > precision) {
+    const mid = (low + high) / 2;
+    const actualRating = calculateSingleRating(level, mid);
     if (actualRating >= goalMusicRating) {
-      return score;
+      answer = mid;
+      high = mid;
+    } else {
+      low = mid;
     }
   }
-  
-  return right; // 見つからない場合は上限を返す
+  // 切り上げて最小スコア候補を得る
+  let minScore = Math.ceil(answer * 1e6) / 1e6;
+  // 厳密に「minScore - step」で目標レート未満になるまでstep幅ずつ下げて調整
+  while (minScore - precision >= left) {
+    const testScore = minScore - precision;
+    const testRating = calculateSingleRating(level, testScore);
+    if (testRating < goalMusicRating) {
+      break;
+    }
+    minScore = testScore;
+  }
+  // 最小スコアを返す
+  return Number(minScore.toFixed(6));
 };
 
 /**
@@ -158,12 +176,7 @@ export const calculateGoalScore = (
 
       // 境界値では過剰な場合、前の境界値から正確な最小値を探索
       const prevThreshold = i > 0 ? rankThresholds[i - 1] : 0.9;
-      return findMinimumScore(
-        goalMusicRating,
-        level,
-        prevThreshold,
-        threshold
-      );
+      return findMinimumScore(goalMusicRating, level, prevThreshold, threshold);
     }
   }
 
