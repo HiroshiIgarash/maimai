@@ -1,23 +1,34 @@
+/**
+ * 楽曲検索・処理機能
+ * 
+ * 楽曲データの検索とプレイ情報の処理機能を提供します。
+ * 楽曲名のマッピング、譜面定数の検索、レーティング情報の生成を行います。
+ * 
+ * 主な機能：
+ * - 楽曲名の正規化とマッピング
+ * - 楽曲データからの譜面定数・新曲フラグ検索
+ * - プレイ情報から楽曲レーティング情報リストの生成
+ */
+
 import { MusicDifficulty, MusicRatingInfo, PlayInfo } from "./types/type";
 import { calculateSingleRating } from "./rating";
 import titleMap from "../data/title-map.json";
 
 /**
  * 新しい楽曲データから譜面定数および旧曲・新曲を検索する
- * @param musicData 楽曲データ
- * @param musicTitle 楽曲名
- * @param isDx DX譜面かどうか
- * @param difficulty 難易度
- * @returns
  */
 export const searchRealLevelAndIsNewFromMusicData = (
+  /** 楽曲データ */
   musicData: {
     r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
     m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
     e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
   },
+  /** 楽曲名 */
   musicTitle: string,
+  /** DX譜面かどうか */
   isDx: boolean,
+  /** 難易度 */
   difficulty: MusicDifficulty
 ): {
   level: number | undefined;
@@ -52,18 +63,17 @@ export const searchRealLevelAndIsNewFromMusicData = (
 
 /**
  * プレイ情報から楽曲レーティング情報のリストを返す（楽曲データ版）
- * @param playInfo
- * @param musicData
- * @param difficulty
- * @returns
  */
 export const generateMusicRatingInfoListFromMusicData = (
+  /** プレイ情報 */
   playInfo: PlayInfo[],
+  /** 楽曲データ */
   musicData: {
     r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
     m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
     e: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
   },
+  /** 難易度 */
   difficulty: MusicDifficulty
 ): MusicRatingInfo[] => {
   const musicRatingInfoList = playInfo.map((info) => {

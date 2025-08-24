@@ -1,13 +1,24 @@
+/**
+ * 楽曲データ取得・パース機能
+ *
+ * 外部のJavaScriptファイルから楽曲の譜面定数データを取得し、
+ * HTMLパースを行って構造化されたデータに変換する機能を提供します。
+ *
+ * 主な機能：
+ * - 外部スクリプトからの配列データ抽出
+ * - HTMLスパンタグからの楽曲情報パース
+ * - 楽曲データの取得とキャッシュ機能
+ */
+
 import { unstable_cache, revalidateTag } from "next/cache";
 
 /**
  * JSファイル内の配列データを文字列として抽出する
- * @param scriptText JSファイルの内容
- * @param variableName 抽出したい変数名（例：'lv15_rslt'）
- * @returns 抽出された配列データ
  */
 export const extractArrayFromScript = (
+  /** JSファイルの内容 */
   scriptText: string,
+  /** 抽出したい変数名（例：'lv15_rslt'） */
   variableName: string
 ): string[][] => {
   try {
@@ -40,10 +51,9 @@ export const extractArrayFromScript = (
 
 /**
  * HTMLスパンタグから楽曲情報を抽出する
- * @param item HTMLスパンタグの文字列
- * @returns パースされた楽曲情報
  */
 export const parseMusicItem = (
+  /** HTMLスパンタグの文字列 */
   item: string
 ): {
   title: string;
@@ -87,12 +97,16 @@ export const parseMusicItem = (
   }
 };
 
-// キャッシュをクリアする関数
+/**
+ * キャッシュをクリアする関数
+ */
 export const revalidateMusicDataCache = async (): Promise<void> => {
   revalidateTag("music-data");
 };
 
-// 内部の楽曲データ取得関数（キャッシュなし）
+/**
+ * 内部の楽曲データ取得関数（キャッシュなし）
+ */
 export const fetchMusicDataInternal = async (): Promise<{
   r: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
   m: Array<{ title: string; level: number; isDx: boolean; isNew: boolean }>;
@@ -163,7 +177,6 @@ export const fetchMusicDataInternal = async (): Promise<{
 
 /**
  * JSファイルから楽曲データを文字列処理で取得してパースする（キャッシュ付き）
- * @returns
  */
 export const fetchMusicData = unstable_cache(
   fetchMusicDataInternal,

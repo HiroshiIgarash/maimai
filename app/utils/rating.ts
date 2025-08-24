@@ -1,3 +1,19 @@
+/**
+ * レーティング計算機能
+ * 
+ * maimai DXのレーティング計算に関する機能を提供します。
+ * スコアからランクへの変換、単曲レーティングの計算、
+ * 目標スコアの算出、総合レーティングの計算を行います。
+ * 
+ * 主な機能：
+ * - スコアからランク係数・ランク名の算出
+ * - 単曲レーティングの計算
+ * - 目標スコア逆算機能
+ * - でらっくすRATING総合値の計算
+ */
+
+import { MusicRatingInfo } from "./types/type";
+
 const rankNeedScoreMap = {
   SSS_PLUS: 1.005,
   SSS: 1,
@@ -11,10 +27,11 @@ const rankNeedScoreMap = {
 
 /**
  * 達成率からRank係数を算出する
- * @param score 達成率
- * @returns Rank係数
  */
-export const rateByScore = (score: number) => {
+export const rateByScore = (
+  /** 達成率 */
+  score: number
+) => {
   if (score >= rankNeedScoreMap.SSS_PLUS) return 22.4;
   if (score >= rankNeedScoreMap.SSS) return 21.6;
   if (score >= rankNeedScoreMap.SS_PLUS) return 21.1;
@@ -28,10 +45,11 @@ export const rateByScore = (score: number) => {
 
 /**
  * 達成率からランク（SSSなど）を算出する
- * @param {number} score 達成率
- * @returns
  */
-export const rankByScore = (score: number) => {
+export const rankByScore = (
+  /** 達成率 */
+  score: number
+) => {
   if (score >= rankNeedScoreMap.SSS_PLUS) return "SSS+";
   if (score >= rankNeedScoreMap.SSS) return "SSS";
   if (score >= rankNeedScoreMap.SS_PLUS) return "SS+";
@@ -44,16 +62,25 @@ export const rankByScore = (score: number) => {
   return "B";
 };
 
-export const rateByRank = (rank: keyof typeof rankNeedScoreMap) => {
+/**
+ * ランクから係数を算出する
+ */
+export const rateByRank = (
+  /** ランク */
+  rank: keyof typeof rankNeedScoreMap
+) => {
   return rateByScore(rankNeedScoreMap[rank]);
 };
 
 /**
  * 単曲レーティングを算出する
- * @param level
- * @param score
  */
-export const calculateSingleRating = (level: number, score: number) => {
+export const calculateSingleRating = (
+  /** 譜面定数 */
+  level: number,
+  /** 達成率 */
+  score: number
+) => {
   const rate = rateByScore(score);
   const singleRating = Math.floor(level * Math.min(score, 1.005) * rate);
 
@@ -62,10 +89,13 @@ export const calculateSingleRating = (level: number, score: number) => {
 
 /**
  * 目標単曲レートに達するのに必要な楽曲スコアを算出する
- * @param goalMusicRating 目標単曲レート
- * @param level 譜面定数
  */
-export const calculateGoalScore = (goalMusicRating: number, level: number) => {
+export const calculateGoalScore = (
+  /** 目標単曲レート */
+  goalMusicRating: number,
+  /** 譜面定数 */
+  level: number
+) => {
   /** 指定したランクでの最低レーティング */
   const minRatingInRank = (rank: keyof typeof rankNeedScoreMap) => {
     return Math.floor(level * rankNeedScoreMap[rank] * rateByRank(rank));
@@ -157,12 +187,9 @@ export const calculateGoalScore = (goalMusicRating: number, level: number) => {
 
 /**
  * 楽曲レーティング情報からでらっくすRATINGを算出する
- * @param musicRatingInfoList 楽曲レーティング情報
- * @returns
  */
-import { MusicRatingInfo } from "./types/type";
-
 export const calculateMaimaiRating = (
+  /** 楽曲レーティング情報 */
   musicRatingInfoList: MusicRatingInfo[]
 ) => {
   const targetMusicRatingInfoList = [
