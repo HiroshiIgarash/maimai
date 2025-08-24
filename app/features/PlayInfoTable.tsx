@@ -13,7 +13,7 @@ import {
 import AllDifficultyPlayInfo from "../utils/playInfo.json";
 import { MusicRatingInfo } from "../utils/types/type";
 import PlayInfoTableView from "./PlayInfoTableView";
-import { calculateGoalScore } from "../utils/functions_browser";
+import { calculateGoalScore } from "../utils/functions";
 
 interface playInfoTableProps {
   musicData: {

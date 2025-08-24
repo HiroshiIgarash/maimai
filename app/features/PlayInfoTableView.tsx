@@ -13,7 +13,7 @@ import {
   calculateGoalScore,
   rankByScore,
   calculateSingleRating,
-} from "../utils/functions_browser";
+} from "../utils/functions";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
